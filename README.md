@@ -15,9 +15,10 @@ The `mailto` package:
 
 ## Important links
 
-* [Read the source](https://github.com/smaho-engineering/mailto)
+* [Read the source code and **star the repo!**](https://github.com/smaho-engineering/mailto)
 * [Check package info on `pub.dev`](https://pub.dev/packages/mailto)
 * [Open an issue](https://github.com/smaho-engineering/mailto/issues)
+* [Read the docs](https://pub.dev/documentation/mailto/latest/)
 * This Dart package is created by the [SMAHO development team](https://github.com/smaho-engineering).
 
 ## Usage
