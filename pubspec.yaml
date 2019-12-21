@@ -1,5 +1,5 @@
 name: mailto
-version: 0.1.1
+version: 0.1.2
 description: Simple Dart package for creating mailto links in your Flutter apps
 author: Vince Varga <vince.varga@smaho.com>
 homepage: https://github.com/smaho-engineering/mailto
@@ -7,5 +7,7 @@ repository: https://github.com/smaho-engineering/mailto
 issue_tracker: https://github.com/smaho-engineering/mailto/issues
 environment:
   sdk: '>=2.0.0 <3.0.0'
+dependencies:
+  meta: ^1.1.8
 dev_dependencies:
   test: ^1.9.4

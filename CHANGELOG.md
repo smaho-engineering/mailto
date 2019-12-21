@@ -1,3 +1,7 @@
+## 0.1.2
+
+Add the `meta` package as dependency
+
 ## 0.1.1
 
 Add changelog and example command-line script
