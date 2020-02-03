@@ -1,3 +1,7 @@
+## 0.1.3
+
+Write README and Flutter example app
+
 ## 0.1.2
 
 Add the `meta` package as dependency
