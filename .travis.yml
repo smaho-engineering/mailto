@@ -4,3 +4,8 @@ dart_task:
 - test
 - dartfmt
 - dartanalyzer: --fatal-warnings lib test
+
+jobs:
+  include:
+    - stage: coverage
+      script: pub global activate test_coverage && pub global run test_coverage && bash <(curl -s https://codecov.io/bash)
