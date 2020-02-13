@@ -11,7 +11,7 @@ The `mailto` package:
 * encodes every value for your correctly
 * is blazingly fast 😜
 
-[![smaho-engineering/mailto](https://img.shields.io/static/v1?label=smaho-engineering&message=mailto&style=flat-square&logo=flutter&logoWidth=30&color=FF8200&labelColor=08589c&labelWidth=30)](https://github.com/smaho-engineering/mailto)
+[![smaho-engineering/mailto](https://img.shields.io/static/v1?label=smaho-engineering&message=mailto&style=flat-square&logo=flutter&logoWidth=30&color=FF8200&labelColor=08589c&labelWidth=30)](https://github.com/smaho-engineering/mailto) [![Build Status](https://travis-ci.org/smaho-engineering/mailto.svg?branch=master)](https://travis-ci.org/smaho-engineering/mailto)
 
 ## Important links
 
