@@ -4,12 +4,22 @@
 ### Dart ###
 # See https://www.dartlang.org/guides/libraries/private-files
 
+# Coverage
+coverage/
+coverage_badge.svg
+test/.test_coverage.dart
+
+
 # Files and directories created by pub
 .dart_tool/
 .packages
 build/
+
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
+
+# JetBrains
+.idea/
 
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.
