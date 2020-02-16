@@ -52,19 +52,12 @@ launchMailto() async {
 
 Use [`url_launcher`](https://pub.dev/packages/url_launcher) for launching the links you create with the `mailto` package.
 
-The package currently does not follow [RFC 6068 - The 'mailto' URI Scheme](https://tools.ietf.org/html/rfc6068), but it's planned to make sure that the package works well on all platforms and with all email clients.
+The package currently does not follow [RFC 6068 - The 'mailto' URI Scheme](https://tools.ietf.org/html/rfc6068).
+An update to this package is planned to make sure that the package works well on all platforms and with all email clients.
 
-## Contribute
+## Development
 
-### Tests
-
-We use the [`test`](https://pub.dev/packages/test) package for writing and running tests.
-
-**Run the test locally by `pub run test`.**
-
-
-### Format
-
-We use the [`dartfmt`](https://dart.dev/tools/dartfmt) tool to automatically format our code in a way that follows the Dart guidelines.
-
-**Format your code by executing `dartfmt -w .`.**
+* **`dartfmt -w .`** - Format code with [`dartfmt`](https://dart.dev/tools/dartfmt)
+* **`pub run test`** -  Run all tests using the [`test`](https://pub.dev/packages/test) package
+* **`dartanalyzer lib test`** - Run the analyzer on the `lib` and `test` folders
+* **`bash coverage.sh`** - Get coverage info
