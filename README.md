@@ -52,6 +52,8 @@ launchMailto() async {
 
 Use [`url_launcher`](https://pub.dev/packages/url_launcher) for launching the links you create with the `mailto` package.
 
+The package currently does not follow [RFC 6068 - The 'mailto' URI Scheme](https://tools.ietf.org/html/rfc6068), but it's planned to make sure that the package works well on all platforms and with all email clients.
+
 ## Contribute
 
 ### Tests
