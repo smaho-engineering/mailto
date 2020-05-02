@@ -104,11 +104,11 @@ Future<void> main() async {
 
 Start the server by executing `cd example/server && dart main.dart`, then open your browser at [`localhost:3000`](http://localhost:3000).
 
-// TODO: IMAGE
+<img src="https://github.com/smaho-engineering/mailto/blob/master/assets/dart-server.png?raw=true" alt="mailto demo: Dart server HTML" width="500"/>
 
 If you have an email client installed on your computer, this client will be opened when you click the link on the HTML page.
 
-// TODO: IMAGE
+<img src="https://github.com/smaho-engineering/mailto/blob/master/assets/macos-client.png?raw=true" alt="mailto demo: MacOS email client" width="500"/>
  
 
 ## Known limitations of `mailto` URIs
