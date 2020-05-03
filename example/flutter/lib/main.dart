@@ -50,6 +50,41 @@ class _MailtoDemoState extends State<MailtoDemo> {
       ),
       child: ListView(
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+            ),
+            child: CupertinoButton(
+              color: Color(0xFF8E44AD),
+              child: Text('Suprise me!'),
+              onPressed: () async {
+                final url = Mailto(
+                  to: [
+                    'example@example.com',
+                    'ejemplo@ejemplo.com',
+                  ],
+                  cc: [
+                    'percentage%100@example.com',
+                    'QuestionMark?address@example.com',
+                  ],
+                  bcc: [
+                    'Mike&family@example.org',
+                  ],
+                  subject: 'Let\'s drink a "café"! ☕️ 2+2=4 #coffeeAndMath',
+                  body:
+                      'Hello this if the first line!\n\nNew line with some special characters őúóüűáéèßáñ\nEmoji: 🤪💙👍',
+                ).toString();
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  showCupertinoDialog(
+                    context: context,
+                    builder: MailClientOpenErrorDialog(url: url).build,
+                  );
+                }
+              },
+            ),
+          ),
           EmailsContainer(
             onChanged: (v) => to = v,
             icon: CupertinoIcons.person_solid,
@@ -89,7 +124,6 @@ class _MailtoDemoState extends State<MailtoDemo> {
                   subject: subject,
                   body: body,
                 ).toString();
-
                 if (await canLaunch(url)) {
                   await launch(url);
                 } else {
@@ -100,7 +134,7 @@ class _MailtoDemoState extends State<MailtoDemo> {
                 }
               },
             ),
-          )
+          ),
         ],
       ),
     );
@@ -114,6 +148,7 @@ class MailClientOpenErrorDialog extends StatelessWidget {
       : assert(url != null),
         assert(url != ''),
         super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
