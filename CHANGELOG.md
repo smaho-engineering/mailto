@@ -1,3 +1,12 @@
+## 0.2.0
+
+* Correctly encode trickier "to" arguments from the RFC linked in the README
+* Validate input in constructor and throw `ArgumentError` if something is incorrect
+* Make validation optional by setting the `validate` argument to `MailtoValidate.never`
+* Clarify in README the limitations of mailto links
+* Add server example so it's easy to test on desktop/browser
+* Add screenshots about example Flutter app and server
+
 ## 0.1.4
 
 Improve README
