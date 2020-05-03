@@ -26,11 +26,8 @@ The `mailto` package helps you build mailto links and provides you with an idiom
 
 ## Usage
 
-### Flutter and the `url_launcher` package
-
 You may want to launch the email client on your user's phone with certain fields pre-filled.
 Use the [`url_launcher`](https://pub.dev/packages/url_launcher) for launching the links you create with the `mailto` package.
-
 
 ```dart
 import 'package:mailto/mailto.dart';
@@ -53,19 +50,58 @@ launchMailto() async {
 }
 ```
 
-### `/examples`
+### Skip validation
 
-You'll find great examples on the project's GitHub repository in the [**`/example` folder**](https://github.com/smaho-engineering/mailto/tree/master/example).
+By default, the package validates the input via assertions upon object creation.
+If you wish to skip this validation step, set the `validate` argument to `MailtoValidate.never`.
 
-#### Flutter
+```dart
+// We don't know why you'd want to do this, but just in case, we made the validation optional.
+final mailtoLink = Mailto(
+    // Who you are sending this email to? 
+    to: null,
+    // What does this even mean?
+    cc: ['\n\n\n', null, ''],
+    // New lines are not supported in subject lines
+    subject: 'new lines in subject \n FTW',
+    // Skip validation and hope for the best 🤞💣
+    validate: MailtoValidate.never,
+  );
+```
 
-// TODO: image
+## Known limitations of `mailto` URIs
 
-#### Dart server HTML
+I tested the package manually in Flutter apps on iOS and Android (Gmail, FastMail, Yahoo email client), and in the browser on macOS,
+and the package has an extensive test suite that incorporates many examples from the [RFC 6068 - The 'mailto' URI Scheme](https://tools.ietf.org/html/rfc6068) document.
 
-The `mailto` package works in any Dart app: Flutter, AngularDart, or on the server
-.
-Here is a simple Dart server that will respond with an HTML page with a `mailto` link in it to any response.
+Unfortunately, each client handle mailto links differently: Gmail does not add line-breaks in the message `body`,
+FastMail skips the `bcc`, Yahoo is not able to handle encoded values in `subject` and `body`, and these are only the three clients I tested.
+The iOS email client seems to handle everything well, so 🎸🤘🎉.
+
+Make sure you understand these limitations before you decide to incorporate `mailto` links in your app:
+letting users open their email clients with pre-filled values might be a quick and easy way to let your users get in touch with you
+with little development efforts. At the same time, you need to keep in mind that it's very unlikely
+that these links are going to work consistently for all of your users.
+If you need something bullet-proof, consider alternative solutions (e.g. Flutter forms and a working backend).
+
+In case you find potential improvements to the package, please create a pull request or let's discuss it in an issue.
+I might not merge all pull requests, especially changes that improve things for one client, but makes it worse for others.
+We consider the iOS mail app and Gmail on Android the two most important mail clients.
+
+## `/example`
+
+You'll find runnable, great examples on the project's GitHub repository in the [**`/example` folder**](https://github.com/smaho-engineering/mailto/tree/master/example).
+
+#### Flutter example app
+
+0. Clone the repository
+1. Change directory to `cd example/flutter`
+2. `flutter run` and wait for the app to start
+3. You can fill out the forms with your own input or click the "Surprise me" button to see how your mail client handles tricky input
+
+#### HTTP server serving an HTML web page with a mailto link
+
+The `mailto` package works in any Dart program: be it Flutter, AngularDart, or on the server.
 
 ```dart
 import 'dart:io';
@@ -102,49 +138,13 @@ Future<void> main() async {
 }
 ```
 
-Start the server by executing `cd example/server && dart main.dart`, then open your browser at [`localhost:3000`](http://localhost:3000).
+0. Clone the repository
+1. Change directory to `cd example/http_server`
+2. Start HTTP server `dart main.dart`
+3. Open your browser [`localhost:3000`](http://localhost:3000)
+4. Click on the link
+5. If you have an email client installed on your computer, this client will be opened when you click the link on the HTML page.
 
 <img src="https://github.com/smaho-engineering/mailto/blob/master/assets/dart-server.png?raw=true" alt="mailto demo: Dart server HTML" width="500"/>
 
-If you have an email client installed on your computer, this client will be opened when you click the link on the HTML page.
-
 <img src="https://github.com/smaho-engineering/mailto/blob/master/assets/macos-client.png?raw=true" alt="mailto demo: MacOS email client" width="500"/>
- 
-
-## Known limitations of `mailto` URIs
-
-I tested the package manually in Flutter apps on iOS and Android (Gmail, FastMail, Yahoo email client), and in the browser on macOS,
-and the package has an extensive test suite that incorporates many examples from the [RFC 6068 - The 'mailto' URI Scheme](https://tools.ietf.org/html/rfc6068) document.
-
-Unfortunately, each client handle mailto links differently: Gmail does not add line-breaks in the message `body`,
-FastMail skips the `bcc`, Yahoo is not able to handle encoded values in `subject` and `body`, and these are only the three clients I tested.
-The iOS email client seems to handle everything well, so 🎸🤘🎉.
-
-In case you find potential improvements to the package, please create a pull request or let's discuss it in an issue.
-I might not merge all pull requests, especially changes that improve things for one client, but makes it worse for others.
-
-Make sure you understand these limitations before you decide to incorporate `mailto` links in your app:
-letting users open their email clients with pre-filled values might be a quick and easy way to let your users get in touch with you
-with little development efforts. At the same time, you need to keep in mind that it's very unlikely
-that these links are going to work consistently for all of your users.
-If you need something bullet-proof, consider alternative solutions (e.g. Flutter forms and a working backend).
-
-### Skip validation
-
-By default, the package validates the input via assertions upon object creation.
-These assertions are added to find incorrect input during development.
-
-If you wish to skip this validation step, set the `validate` argument to `MailtoValidate.never`.
-
-```dart
-// We don't know why you'd want to do this, but just in case, we made the validation optional.
-final mailtoLink = Mailto(
-    // Who you are sending this email to? 
-    to: null,
-    // What does this even mean?
-    cc: ['\n\n\n', null, ''],
-    // New lines are not supported in subject lines
-    subject: 'new lines in subject \n FTW',
-    validate: MailtoValidate.never,
-  );
-```

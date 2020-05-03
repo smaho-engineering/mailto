@@ -1,4 +1,6 @@
-## 0.2.0
+# `mailto` changelog
+
+### `0.2.0`
 
 * Correctly encode trickier "to" arguments from the RFC linked in the README
 * Validate input in constructor and throw `ArgumentError` if something is incorrect
@@ -6,23 +8,24 @@
 * Clarify in README the limitations of mailto links
 * Add server example so it's easy to test on desktop/browser
 * Add screenshots about example Flutter app and server
+* README improvements in `0.2.0+1`
 
-## 0.1.4
+### `0.1.4`
 
 Improve README
 
-## 0.1.3
+### `0.1.3`
 
 Write README and Flutter example app
 
-## 0.1.2
+### `0.1.2`
 
 Add the `meta` package as dependency
 
-## 0.1.1
+### `0.1.1`
 
 Add changelog and example command-line script
 
-## 0.1.0
+### `0.1.0`
 
 Initial version of the `mailto` package
