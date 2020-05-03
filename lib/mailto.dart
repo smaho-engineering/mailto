@@ -185,33 +185,62 @@ class Mailto {
   /// Body of email.
   ///
   /// The content of the email.
+  ///
+  /// Please be aware that not all email clients are able to handle
+  /// line-breaks in the body.
   final String body;
 
-  StringBuffer _query(StringBuffer sb) {
+  /// Percent encoded value of the comma (',') character.
+  ///
+  /// ```dart
+  /// Uri.encodeComponent(',') == _comma; // true
+  /// ```
+  static const String _comma = '%2C';
+
+  String _encodeTo(String s) {
+    final atSign = s.lastIndexOf('@');
+    return Uri.encodeComponent(s.substring(0, atSign)) + s.substring(atSign);
+  }
+
+  @override
+  String toString() {
+    if (validate == MailtoValidate.enabled) {
+      Mailto.validateParameters(
+        to: to,
+        cc: cc,
+        bcc: bcc,
+        subject: subject,
+        body: body,
+      );
+    }
+    final stringBuffer = StringBuffer('mailto:');
+    // The "to" address list is required to include at least one address.
+    stringBuffer.writeAll(to.map(_encodeTo), _comma);
+    // We need this flag to know whether we should use & or ? when creating
+    // the string.
+    bool paramAdded = false;
     final m = {
       'subject': subject,
       'body': body,
       'cc': cc?.join(','),
       'bcc': bcc?.join(','),
     };
-    var paramAdded = false;
-    for (var e in m.entries) {
+    for (var entry in m.entries) {
       // Do not add key-value pair where the value is missing or empty
-      if (e.value == null || e.value.isEmpty) continue;
-      // We don't need to encode the keys as all keys are under the package's
-      // control and all of them are simple keys without any special characters.
-      sb
+      if (entry.value == null || entry.value.isEmpty) continue;
+      // We don't need to encode the keys because all keys are under the
+      // package's control currently and all of those keys are simple keys
+      // without any special characters.
+      // The RFC also mentions that the body should use '%0D%0A' for line-breaks
+      // however, we didn't find any difference between '%0A' and '%0D%0A',
+      // so we keep it at '%0A'.
+      stringBuffer
         ..write(paramAdded ? '&' : '?')
-        ..write(e.key)
+        ..write(entry.key)
         ..write('=')
-        ..write(Uri.encodeComponent(e.value));
+        ..write(Uri.encodeComponent(entry.value));
       paramAdded = true;
     }
-    return sb;
+    return '$stringBuffer';
   }
-
-  StringBuffer _recipients(StringBuffer sb) => sb..writeAll(to, '%2C');
-
-  @override
-  String toString() => '${_query(_recipients(StringBuffer('mailto:')))}';
 }
