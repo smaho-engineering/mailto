@@ -230,7 +230,7 @@ void main() {
     });
 
     group('"to"', () {
-      _testTo(String description, List<String> to, String result) {
+      void _testTo(String description, List<String> to, String result) {
         _test(description, Mailto(to: to), result);
       }
 
@@ -293,7 +293,7 @@ void main() {
       const email = 'subject@example.com';
       const to = [email];
 
-      _testSubject(String description, String subject, String result) {
+      void _testSubject(String description, String subject, String result) {
         _test(description, Mailto(to: to, subject: subject), result);
       }
 

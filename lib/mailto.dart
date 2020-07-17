@@ -229,7 +229,7 @@ class Mailto {
     stringBuffer.writeAll(to.map(_encodeTo), _comma);
     // We need this flag to know whether we should use & or ? when creating
     // the string.
-    bool paramAdded = false;
+    var paramAdded = false;
     final m = {
       'subject': subject,
       'body': body,
