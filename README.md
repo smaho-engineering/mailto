@@ -141,7 +141,7 @@ Future<void> main() async {
 0. Clone the repository
 1. Change directory to `cd example/http_server`
 2. Start HTTP server `dart main.dart`
-3. Open your browser [`localhost:3000`](http://localhost:3000)
+3. Open your browser and visit `localhost:3000`
 4. Click on the link
 5. If you have an email client installed on your computer, this client will be opened when you click the link on the HTML page.
 
