@@ -62,7 +62,7 @@ class Mailto {
     this.body,
     this.validate = MailtoValidate.viaAssertions,
   }) : assert(() {
-          if (validate == MailtoValidate.viaAssertions)
+          if (validate == MailtoValidate.viaAssertions) {
             Mailto.validateParameters(
               to: to,
               cc: cc,
@@ -70,6 +70,7 @@ class Mailto {
               subject: subject,
               body: body,
             );
+          }
           return true;
         }());
 
@@ -85,35 +86,40 @@ class Mailto {
   final MailtoValidate validate;
 
   @visibleForTesting
-  static validateParameters({
+  static void validateParameters({
     List<String> to,
     List<String> cc,
     List<String> bcc,
     String subject,
     String body,
   }) {
-    if (to == null) throw ArgumentError.notNull('to');
-    if (to.isEmpty)
+    if (to == null) {
+      throw ArgumentError.notNull('to');
+    }
+    if (to.isEmpty) {
       throw ArgumentError.value(
         to,
         'to',
         '"to" list must contain at least one element',
       );
+    }
     bool isEmpty(String e) => e.isEmpty;
     bool containsLineBreak(String e) => e.contains('\n');
-    if (to.any(isEmpty))
+    if (to.any(isEmpty)) {
       throw ArgumentError.value(
         to,
         'to',
         'elements in "to" list must not be empty',
       );
-    if (to.any(containsLineBreak))
+    }
+    if (to.any(containsLineBreak)) {
       throw ArgumentError.value(
         to,
         'to',
         'elements of the "to" list must not contain line breaks',
       );
-    if (cc?.any(isEmpty) == true)
+    }
+    if (cc?.any(isEmpty) == true) {
       throw ArgumentError.value(
         cc,
         'cc',
@@ -121,13 +127,15 @@ class Mailto {
             'Use null if you want to leave the "cc" out from the mailto link, '
             'pass in null or leave it empty',
       );
-    if (cc?.any(containsLineBreak) == true)
+    }
+    if (cc?.any(containsLineBreak) == true) {
       throw ArgumentError.value(
         cc,
         'cc',
         'elements of the "cc" list must not contain line breaks',
       );
-    if (bcc?.any(isEmpty) == true)
+    }
+    if (bcc?.any(isEmpty) == true) {
       throw ArgumentError.value(
         bcc,
         'bcc',
@@ -135,18 +143,21 @@ class Mailto {
             'Use null if you want to leave the "bcc" out from the mailto link, '
             'pass in null or leave it empty',
       );
-    if (bcc?.any(containsLineBreak) == true)
+    }
+    if (bcc?.any(containsLineBreak) == true) {
       throw ArgumentError.value(
         bcc,
         'bcc',
         'elements of the "bcc" list must not contain line breaks',
       );
-    if (subject?.contains('\n') == true)
+    }
+    if (subject?.contains('\n') == true) {
       throw ArgumentError.value(
         subject,
         'subject',
         '"subject" must not contain line breaks',
       );
+    }
   }
 
   /// Main recipient(s) of your email
