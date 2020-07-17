@@ -9,6 +9,7 @@
 * Add server example so it's easy to test on desktop/browser
 * Add screenshots about example Flutter app and server
 * README improvements in `0.2.0+1`
+* Fix pub.dev pub points `0.2.0+2`
 
 ### `0.1.4`
 
