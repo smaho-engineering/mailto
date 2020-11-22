@@ -78,11 +78,14 @@ Unfortunately, each client handle mailto links differently: Gmail does not add l
 FastMail skips the `bcc`, Yahoo is not able to handle encoded values in `subject` and `body`, and these are only the three clients I tested.
 The iOS email client seems to handle everything well, so 🎸🤘🎉.
 
-Make sure you understand these limitations before you decide to incorporate `mailto` links in your app:
-letting users open their email clients with pre-filled values might be a quick and easy way to let your users get in touch with you
-with little development efforts. At the same time, you need to keep in mind that it's very unlikely
+The package might also not work if the resulting mailto links are extremely long. I don't know the exact character count where the links fail, but I'd try to keep things under 1000 characters.
+
+**Important**: Make sure you understand these limitations before you decide to incorporate `mailto` links in your app:
+letting users open their email clients with pre-filled values is a quick and easy way to let your users get in touch with you
+with extremely little development effort. At the same time, you need to keep in mind that it's very unlikely
 that these links are going to work consistently for all of your users.
-If you need something bullet-proof, consider alternative solutions (e.g. Flutter forms and a working backend).
+
+**If you need something bullet-proof, this package is not the right tool for solving your problem, so please consider alternative solutions (e.g. Flutter forms and a working backend).**
 
 In case you find potential improvements to the package, please create a pull request or let's discuss it in an issue.
 I might not merge all pull requests, especially changes that improve things for one client, but makes it worse for others.
