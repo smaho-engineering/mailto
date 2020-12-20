@@ -11,54 +11,19 @@ const _email = 'johndoe@example.com';
 
 void main() {
   group('$Mailto', () {
-    group('validate', () {
-      Mailto invalidUsage(MailtoValidate validate) {
-        if (validate == null) return Mailto(to: null);
-        return Mailto(to: null, validate: validate);
-      }
-
-      test('defaults to assert mode ${MailtoValidate.viaAssertions}', () {
-        expect(() {
-          invalidUsage(null);
-        }, throwsA(isA<ArgumentError>()));
-      });
-
-      test('via assertions with ${MailtoValidate.viaAssertions}', () {
-        expect(() {
-          invalidUsage(MailtoValidate.viaAssertions);
-        }, throwsA(isA<ArgumentError>()));
-      });
-
-      test('is skipped with ${MailtoValidate.never}', () {
-        expect(() {
-          invalidUsage(MailtoValidate.never);
-        }, isNot(throwsA(isA<ArgumentError>())));
-      });
-
-      test('upon toString with ${MailtoValidate.enabled}', () {
-        Mailto mailto;
-        expect(() {
-          mailto = invalidUsage(MailtoValidate.enabled);
-        }, isNot(throwsA(isA<ArgumentError>())));
-        expect(() {
-          final _ = '$mailto';
-        }, throwsA(isA<ArgumentError>()));
-      });
-    });
-
     group('validateInput', () {
       group('"to"', () {
-        test('must not be null', () {
+        test('can be null', () {
           expect(
             () => Mailto.validateParameters(to: null),
-            throwsA(isA<ArgumentError>()),
+            returnsNormally,
           );
         });
 
-        test('must not be empty', () {
+        test('can be empty', () {
           expect(
             () => Mailto.validateParameters(to: []),
-            throwsA(isA<ArgumentError>()),
+            returnsNormally,
           );
         });
 
@@ -286,6 +251,20 @@ void main() {
         'complicated email address 3',
         [r'''"\\\"it's\ ugly\\\""@example.org'''],
         '''mailto:%22%5C%5C%5C%22it's%5C%20ugly%5C%5C%5C%22%22@example.org''',
+      );
+    });
+
+    group('missing "to"', () {
+      _test(
+        'to can be null',
+        Mailto(to: null, subject: 'Subject'),
+        'mailto:?subject=Subject',
+      );
+
+      _test(
+        'to can be empty list',
+        Mailto(to: [], subject: 'Subject'),
+        'mailto:?subject=Subject',
       );
     });
 

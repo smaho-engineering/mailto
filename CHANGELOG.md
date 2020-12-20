@@ -1,5 +1,10 @@
 # `mailto` changelog
 
+### `0.3.0`
+
+* `to` values were made optional [`mailto #4`](https://github.com/smaho-engineering/mailto/issues/4)
+* removed the `validate` argument from `Mailto`. You may still validate paramaters using the `Mailto.validateParameters` static function.
+
 ### `0.2.0`
 
 * Correctly encode trickier "to" arguments from the RFC linked in the README

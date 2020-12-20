@@ -27,7 +27,7 @@ The `mailto` package helps you build mailto links and provides you with an idiom
 ## Usage
 
 You may want to launch the email client on your user's phone with certain fields pre-filled.
-Use the [`url_launcher`](https://pub.dev/packages/url_launcher) for launching the links you create with the `mailto` package.
+For Flutter apps, it's recommended to use the [`url_launcher`](https://pub.dev/packages/url_launcher) package for launching the links you create with the `mailto` package.
 
 ```dart
 import 'package:mailto/mailto.dart';
@@ -50,23 +50,20 @@ launchMailto() async {
 }
 ```
 
-### Skip validation
+### Validation
 
-By default, the package validates the input via assertions upon object creation.
-If you wish to skip this validation step, set the `validate` argument to `MailtoValidate.never`.
+The package provides a simple validation function. 
+You could use this function in an `assert` to catch issues in development mode.
+
+The package doesn't validate automatically, so either use the validation function or make sure that the parameters you use are correct.
 
 ```dart
-// We don't know why you'd want to do this, but just in case, we made the validation optional.
-final mailtoLink = Mailto(
-    // Who you are sending this email to? 
-    to: null,
-    // What does this even mean?
-    cc: ['\n\n\n', null, ''],
-    // New lines are not supported in subject lines
-    subject: 'new lines in subject \n FTW',
-    // Skip validation and hope for the best 🤞💣
-    validate: MailtoValidate.never,
-  );
+Mailto.validateParameters(
+  // New lines are NOT supported in subject lines
+  subject: 'new lines in subject \n FTW',
+  // What does this even mean?
+  cc: ['\n\n\n', null, ''],
+);
 ```
 
 ## Known limitations of `mailto` URIs
@@ -151,3 +148,4 @@ Future<void> main() async {
 <img src="https://github.com/smaho-engineering/mailto/blob/master/assets/dart-server.png?raw=true" alt="mailto demo: Dart server HTML" width="500"/>
 
 <img src="https://github.com/smaho-engineering/mailto/blob/master/assets/macos-client.png?raw=true" alt="mailto demo: MacOS email client" width="500"/>
+
