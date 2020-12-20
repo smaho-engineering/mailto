@@ -33,7 +33,7 @@ Future<void> main() async {
 
   final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 3000);
 
-  print('Listening on localhost:${server.port}');
+  print('Listening on http://localhost:${server.port}');
 
   await for (HttpRequest request in server) {
     print('received request!');
