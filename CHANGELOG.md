@@ -1,11 +1,11 @@
 # `mailto` changelog
 
-### `0.3.0`
+### `1.1.0`
 
 * `to` values were made optional [`mailto #4`](https://github.com/smaho-engineering/mailto/issues/4)
 * removed the `validate` argument from `Mailto`. You may still validate paramaters using the `Mailto.validateParameters` static function.
 
-### `0.2.0`
+### `1.0.0`
 
 * Correctly encode trickier "to" arguments from the RFC linked in the README
 * Validate input in constructor and throw `ArgumentError` if something is incorrect
@@ -13,8 +13,8 @@
 * Clarify in README the limitations of mailto links
 * Add server example so it's easy to test on desktop/browser
 * Add screenshots about example Flutter app and server
-* README improvements in `0.2.0+1`
-* Fix pub.dev pub points `0.2.0+2`
+* README improvements
+* Fix pub.dev pub points
 
 ### `0.1.4`
 
