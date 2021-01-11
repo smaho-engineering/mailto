@@ -1,5 +1,11 @@
 language: dart
 
+dart:
+  # Null-safety is currently only available on the beta channel.
+  # Once null-safety lands in stable, this can be removed.
+  # For more info: https://docs.travis-ci.com/user/languages/dart/#choosing-dart-versions-to-test-against
+  - beta
+
 dart_task:
 - test
 - dartfmt
