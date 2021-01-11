@@ -13,13 +13,6 @@ void main() {
   group('$Mailto', () {
     group('validateInput', () {
       group('"to"', () {
-        test('can be null', () {
-          expect(
-            () => Mailto.validateParameters(to: null),
-            returnsNormally,
-          );
-        });
-
         test('can be empty', () {
           expect(
             () => Mailto.validateParameters(to: []),
@@ -51,13 +44,6 @@ void main() {
 
       group('"cc"', () {
         const to = ['example@example.com'];
-        test('may be null', () {
-          expect(
-            () => Mailto.validateParameters(to: to, cc: null),
-            isNot(throwsA(isA<ArgumentError>())),
-          );
-        });
-
         test('may be empty list', () {
           expect(
             () => Mailto.validateParameters(to: to, cc: []),
@@ -98,13 +84,6 @@ void main() {
 
       group('"bcc"', () {
         const to = ['example@example.com'];
-        test('may be null', () {
-          expect(
-            () => Mailto.validateParameters(to: to, bcc: null),
-            isNot(throwsA(isA<ArgumentError>())),
-          );
-        });
-
         test('may be empty list', () {
           expect(
             () => Mailto.validateParameters(to: to, bcc: []),
@@ -145,13 +124,6 @@ void main() {
 
       group('"subject"', () {
         const to = ['example@example.com'];
-        test('may be null', () {
-          expect(
-            () => Mailto.validateParameters(to: to, subject: null),
-            isNot(throwsA(isA<ArgumentError>())),
-          );
-        });
-
         test('must not contain line breaks', () {
           expect(
             () => Mailto.validateParameters(
@@ -195,7 +167,7 @@ void main() {
     });
 
     group('"to"', () {
-      void _testTo(String description, List<String> to, String result) {
+      void _testTo(String description, List<String>? to, String result) {
         _test(description, Mailto(to: to), result);
       }
 
@@ -252,12 +224,18 @@ void main() {
         [r'''"\\\"it's\ ugly\\\""@example.org'''],
         '''mailto:%22%5C%5C%5C%22it's%5C%20ugly%5C%5C%5C%22%22@example.org''',
       );
+
+      _testTo(
+        'null safety',
+        null,
+        'mailto:',
+      );
     });
 
     group('missing "to"', () {
       _test(
         'to can be null',
-        Mailto(to: null, subject: 'Subject'),
+        Mailto(subject: 'Subject'),
         'mailto:?subject=Subject',
       );
 

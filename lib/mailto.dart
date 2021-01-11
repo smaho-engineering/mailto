@@ -38,11 +38,11 @@ class Mailto {
   /// or call the `validateParameters` function in an `assert` call to catch
   /// issues during development.
   static void validateParameters({
-    List<String> to,
-    List<String> cc,
-    List<String> bcc,
-    String subject,
-    String body,
+    List<String>? to,
+    List<String>? cc,
+    List<String>? bcc,
+    String? subject,
+    String? body,
   }) {
     bool isEmptyString(String e) => e.isEmpty;
     bool containsLineBreak(String e) => e.contains('\n');
@@ -100,22 +100,22 @@ class Mailto {
   /// Main recipient(s) of your email
   ///
   /// Destination email addresses.
-  final List<String> to;
+  final List<String>? to;
 
   /// Recipient(s) of a copy of the email.
   ///
   /// CC stands for carbon copy. When you CC people on an email, the CC list is
   /// visible to all other recipients.
-  final List<String> cc;
+  final List<String>? cc;
 
   /// Recipient(s) of a secret copy of the email.
   ///
   /// BCC stands for blind carbon copy. When you BCC people on an email, the
   /// BCC list is not visible to other recipients.
-  final List<String> bcc;
+  final List<String>? bcc;
 
   /// Subject of email.
-  final String subject;
+  final String? subject;
 
   /// Body of email.
   ///
@@ -123,7 +123,7 @@ class Mailto {
   ///
   /// Please be aware that not all email clients are able to handle
   /// line-breaks in the body.
-  final String body;
+  final String? body;
 
   /// Percent encoded value of the comma (',') character.
   ///
@@ -141,7 +141,7 @@ class Mailto {
   String toString() {
     // Use a string buffer as input is of unknown length.
     final stringBuffer = StringBuffer('mailto:');
-    if (to != null) stringBuffer.writeAll(to.map(_encodeTo), _comma);
+    if (to != null) stringBuffer.writeAll(to!.map(_encodeTo), _comma);
     // We need this flag to know whether we should use & or ? when creating
     // the string.
     var parameterAdded = false;
@@ -153,7 +153,7 @@ class Mailto {
     };
     for (final parameter in parameterMap.entries) {
       // Do not add key-value pair where the value is missing or empty
-      if (parameter.value == null || parameter.value.isEmpty) continue;
+      if (parameter.value == null || parameter.value!.isEmpty) continue;
       // We don't need to encode the keys because all keys are under the
       // package's control currently and all of those keys are simple keys
       // without any special characters.
@@ -165,7 +165,7 @@ class Mailto {
         ..write(parameterAdded ? '&' : '?')
         ..write(parameter.key)
         ..write('=')
-        ..write(Uri.encodeComponent(parameter.value));
+        ..write(Uri.encodeComponent(parameter.value!));
       parameterAdded = true;
     }
     return stringBuffer.toString();

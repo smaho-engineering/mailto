@@ -62,7 +62,7 @@ Mailto.validateParameters(
   // New lines are NOT supported in subject lines
   subject: 'new lines in subject \n FTW',
   // What does this even mean?
-  cc: ['\n\n\n', null, ''],
+  cc: ['\n\n\n', ''],
 );
 ```
 
