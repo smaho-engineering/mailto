@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 /// [Mailto] helps you create email ("mailto") links.
 ///
 /// The class takes care of all the necessary encoding.
@@ -22,7 +20,7 @@ class Mailto {
   ///
   /// Fields aren't validated. Check [Mailto.validateParameters] for more info.
   Mailto({
-    @required this.to,
+    this.to,
     this.cc,
     this.bcc,
     this.subject,
