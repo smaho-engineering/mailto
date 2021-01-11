@@ -88,18 +88,18 @@ In case you find potential improvements to the package, please create a pull req
 I might not merge all pull requests, especially changes that improve things for one client, but makes it worse for others.
 We consider the iOS mail app and Gmail on Android the two most important mail clients.
 
-## `/example`
+## Examples
 
 You'll find runnable, great examples on the project's GitHub repository in the [**`/example` folder**](https://github.com/smaho-engineering/mailto/tree/master/example).
 
-#### Flutter example app
+### Flutter example app
 
-0. Clone the repository
+1. Clone the repository
 1. Change directory to `cd example/flutter`
-2. `flutter run` and wait for the app to start
-3. You can fill out the forms with your own input or click the "Surprise me" button to see how your mail client handles tricky input
+1. `flutter run` and wait for the app to start
+1. You can fill out the forms with your own input or click the "Surprise me" button to see how your mail client handles tricky input
 
-#### HTTP server serving an HTML web page with a mailto link
+### HTTP server serving an HTML web page with a mailto link
 
 The `mailto` package works in any Dart program: be it Flutter, AngularDart, or on the server.
 
@@ -138,12 +138,14 @@ Future<void> main() async {
 }
 ```
 
-0. Clone the repository
+1. Clone the repository
 1. Change directory to `cd example/http_server`
-2. Start HTTP server `dart main.dart`
-3. Open your browser and visit `localhost:3000`
-4. Click on the link
-5. If you have an email client installed on your computer, this client will be opened when you click the link on the HTML page.
+1. Start HTTP server `dart main.dart`
+1. Open your browser and visit `localhost:3000`
+1. Click on the link
+1. If you have an email client installed on your computer, this client will be opened when you click the link on the HTML page.
+
+#### Screenshots
 
 <img src="https://github.com/smaho-engineering/mailto/blob/master/assets/dart-server.png?raw=true" alt="mailto demo: Dart server HTML" width="500"/>
 
