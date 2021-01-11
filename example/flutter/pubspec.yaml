@@ -1,6 +1,7 @@
 name: mailto_example
 description: Demonstrates how to use the mailto package. Fancy iOS app.
 version: 1.0.0+1
+publish_to: none
 environment:
   sdk: ">=2.3.0 <3.0.0"
 dependencies:
