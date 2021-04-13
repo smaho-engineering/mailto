@@ -1,4 +1,4 @@
-## 2.0.0-nullsafety.0
+## 2.0.0
 
 * Migrate package to Dart's null safety language feature, requiring Dart 2.12 or higher. Close [`mailto #7`](https://github.com/smaho-engineering/mailto/issues/7)
 * Make `to` values not required, do not depend on the `meta` package anymore. Fix [`mailto #4`](https://github.com/smaho-engineering/mailto/issues/4)

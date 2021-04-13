@@ -144,9 +144,8 @@ class _MailtoDemoState extends State<MailtoDemo> {
 class MailClientOpenErrorDialog extends StatelessWidget {
   final String url;
 
-  const MailClientOpenErrorDialog({Key key, @required this.url})
-      : assert(url != null),
-        assert(url != ''),
+  const MailClientOpenErrorDialog({Key? key, required this.url})
+      : assert(url != ''),
         super(key: key);
 
   @override
@@ -171,10 +170,9 @@ class BodyTextField extends StatefulWidget {
   final ValueChanged<String> onChanged;
 
   const BodyTextField({
-    Key key,
-    @required this.onChanged,
-  })  : assert(onChanged != null),
-        super(key: key);
+    Key? key,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   _BodyTextFieldState createState() => _BodyTextFieldState();
@@ -206,8 +204,6 @@ class _BodyTextFieldState extends State<BodyTextField> {
             _controller.text = '';
             if (isEnabled) {
               widget.onChanged(_controller.text);
-            } else {
-              widget.onChanged(null);
             }
           },
         ),
@@ -237,11 +233,11 @@ class SectionHeading extends StatelessWidget {
   final IconData trailingIcon;
 
   const SectionHeading({
-    Key key,
-    @required this.title,
-    @required this.onPressed,
-    @required this.leadingIcon,
-    @required this.trailingIcon,
+    Key? key,
+    required this.title,
+    required this.onPressed,
+    required this.leadingIcon,
+    required this.trailingIcon,
   }) : super(key: key);
 
   @override
@@ -276,10 +272,9 @@ class SubjectTextField extends StatefulWidget {
   final ValueChanged<String> onChanged;
 
   const SubjectTextField({
-    Key key,
-    @required this.onChanged,
-  })  : assert(onChanged != null),
-        super(key: key);
+    Key? key,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   _SubjectTextFieldState createState() => _SubjectTextFieldState();
@@ -311,8 +306,6 @@ class _SubjectTextFieldState extends State<SubjectTextField> {
             _controller.text = '';
             if (isEnabled) {
               widget.onChanged(_controller.text);
-            } else {
-              widget.onChanged(null);
             }
           },
         ),
@@ -335,9 +328,7 @@ class _SubjectTextFieldState extends State<SubjectTextField> {
 class LargeText extends StatelessWidget {
   final String data;
 
-  const LargeText(this.data, {Key key})
-      : assert(data != null),
-        super(key: key);
+  const LargeText(this.data, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -356,11 +347,11 @@ class LargeText extends StatelessWidget {
 
 class EmailsContainer extends StatefulWidget {
   const EmailsContainer({
-    Key key,
-    @required this.title,
-    @required this.icon,
-    @required this.onChanged,
-    @required this.placeholder,
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.onChanged,
+    required this.placeholder,
   }) : super(key: key);
 
   final String title;
